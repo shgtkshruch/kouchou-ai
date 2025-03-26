@@ -3,7 +3,6 @@ import {ClientContainer} from '@/components/report/ClientContainer'
 import {Header} from '@/components/Header'
 import {Overview} from '@/components/report/Overview'
 import {Footer} from '@/components/Footer'
-import {ClusterOverview} from '@/components/report/ClusterOverview'
 import {BackButton} from '@/components/report/BackButton'
 import {About} from '@/components/About'
 import {Separator} from '@chakra-ui/react'
@@ -80,8 +79,6 @@ export default async function Page({params}: PageProps) {
     notFound()
   }
 
-  const contentLength = resultResponse.headers.get('Content-Length')
-  const resultSize = contentLength ? parseInt(contentLength, 10) : 0
   const meta: Meta = await metaResponse.json()
   const result: Result = await resultResponse.json()
 
@@ -90,11 +87,7 @@ export default async function Page({params}: PageProps) {
       <div className={'container'}>
         <Header meta={meta}/>
         <Overview result={result}/>
-        <ClientContainer resultSize={resultSize} reportName={slug}>
-          {result.clusters.filter(c => c.level === 1).map(c => (
-            <ClusterOverview key={c.id} cluster={c}/>
-          ))}
-        </ClientContainer>
+        <ClientContainer result={result}/>
         <BackButton/>
         <Separator my={12} maxW={'750px'} mx={'auto'}/>
         <About meta={meta}/>
