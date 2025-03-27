@@ -21,9 +21,9 @@ client-setup:
 client-dev: client-dev-server client-admin-dev-server dummy-server
 
 client-build-static:
-	docker compose up api -d
+	# docker compose up api -d
 	cd client && npm run build:static
-	docker compose down
+	# docker compose down
 
 client-dev-server:
 	cd client && npm run dev

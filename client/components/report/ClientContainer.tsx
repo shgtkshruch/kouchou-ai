@@ -1,12 +1,10 @@
 'use client'
 
 import {Chart} from '@/components/report/Chart'
-import {Analysis} from '@/components/report/Analysis'
 import React, {useState} from 'react'
 import {Cluster, Result} from '@/type'
 import {SelectChartButton} from '@/components/charts/SelectChartButton'
 import {DensityFilterSettingDialog} from '@/components/report/DensityFilterSettingDialog'
-import { ClusterOverview } from './ClusterOverview'
 
 type Props = {
   result: Result
@@ -78,10 +76,6 @@ export function ClientContainer({result}: Props) {
           setIsFullscreen(false)
         }}
       />
-      {result.clusters.filter(c => c.level === 1).map(c => (
-        <ClusterOverview key={c.id} cluster={c}/>
-      ))}
-      <Analysis result={result}/>
     </>
   )
 }
