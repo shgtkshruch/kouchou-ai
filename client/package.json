@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "copy": "node copy-image.mjs",
     "build": "next build",
-    "build:static": "NEXT_OUTPUT_MODE=export next build",
+    "build:static": "npm run copy && NEXT_PUBLIC_OUTPUT_MODE=export next build",
     "start": "next start",
     "start:static": "http-server out -p 3000",
     "lint": "next lint",
